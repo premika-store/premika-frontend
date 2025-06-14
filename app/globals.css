@@ -8,6 +8,10 @@ body,
   height: 100%;
 }
 
+body{
+  background-color: "FFE8D2"
+}
+
 
 
 @layer base {
@@ -73,6 +77,6 @@ body,
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
 }
