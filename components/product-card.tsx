@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -24,3 +26,5 @@ export function ProductCard({ title, price, image }: ProductCardProps) {
     </Card>
   )
 }
+
+export default ProductCard;
