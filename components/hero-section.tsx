@@ -70,7 +70,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative h-[70vh] sm:h-[80vh] bg-gradient-to-r from-amber-100 to-amber-200 overflow-hidden">
+    <section className="relative h-[70vh] sm:h-[90vh] bg-gradient-to-r from-amber-100 to-amber-200 overflow-hidden">
       {/* Sliding Container */}
       <div
         className="absolute inset-0 flex will-change-transform transition-transform duration-1000 ease-in-out"
