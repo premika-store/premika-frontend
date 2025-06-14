@@ -49,6 +49,13 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+			terra: {
+				primary: "#92553E",
+				secondary: "#FFE8D2",
+				background: "#361D1B",
+				foreground: "#772520",
+				tertiary: "#B67B5C",
+			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',

@@ -4,27 +4,27 @@
 
 html,
 body,
-:root {
-  height: 100%;
+:root { 
+  --background: #FFEBD2;
+	--foreground: #222222;
+	--primary: #2563eb;
+	--primary-foreground: #ffffff;
+	--secondary: #f59e42;
+	--secondary-foreground: #222222;
 }
-
-body{
-  background-color: "FFE8D2"
-}
-
 
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: "#361D1B";
+    --foreground: "#772520";
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary:"#92553E";
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
+    --secondary: "#FFE8D2";
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
