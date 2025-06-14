@@ -3,7 +3,7 @@ import { Urbanist } from "next/font/google";
 
 import "./globals.css";
 
-import Footer from "@/components/footer";
+import {Footer} from "@/components/footer";
 import Navbar from "@/components/navbar";
 import ModalProdivder from "@/providers/modal-provider";
 import ToastProvider from "@/providers/toast-provider";
