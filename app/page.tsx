@@ -5,14 +5,16 @@ import  ProductGrid  from "@/components/product-grid"
 import { FeatureSection } from "@/components/feature-section"
 import { NewsletterSection } from "@/components/newsletter-section"
 import { Footer } from "@/components/footer"
+import Carousel from "@/components/product-carousel"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <HeroSection />
       <BrandStatement />
-      <ProductGrid />
-      <FeatureSection />
+      <Carousel /> {/* productCarousel */}
+      {/* <ProductGrid /> */}
+      {/* <FeatureSection /> */}
       <NewsletterSection />
       <Footer />
     </div>
