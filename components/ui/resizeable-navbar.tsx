@@ -116,9 +116,9 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           onClick={onItemClick}
           className="relative px-4 py-2 text-background pr-6"
         >
-          <div className=" py-2 px-4 inset-0 h-full w-full rounded-full hover:bg-background hover:text-foreground dark:bg-neutral-800 transition-all duration-200 animate-in fade-in-0">
-            <span className="relative z-20">{item.name}</span>
-          </div>
+            <div className="py-2 px-4 inset-0 h-full w-full rounded-md hover:bg-background hover:text-foreground dark:bg-neutral-800 transition-all duration-200 animate-in fade-in-0">
+            <span className="relative z-20 font-bold">{item.name}</span>
+            </div>
         </Link>
       ))}
     </div>

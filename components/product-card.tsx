@@ -1,30 +1,68 @@
 "use client"
 
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { useState } from "react"
+interface Product {
+  id: string
+  name: string
+  originalPrice: number
+  salePrice: number
+  images: string[]
+  badge?: string
+}
 
 interface ProductCardProps {
-  title: string
-  price: string
-  image: string
+  product: Product
 }
 
-export function ProductCard({ title, price, image }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
   return (
-    <Card className="border-0 shadow-none">
-      <CardContent className="p-0">
-        <div className="relative aspect-[3/4] mb-4">
-          <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover rounded-lg" />
+    <div className="group relative bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+      {/* Product Image Container */}
+      <div
+        className="relative aspect-[3/4] overflow-hidden bg-gray-100"
+        onMouseEnter={() => setCurrentImageIndex(1)}
+        onMouseLeave={() => setCurrentImageIndex(0)}
+      >
+        {/* Main Product Image */}
+        <Image
+          src={product.images[currentImageIndex] || product.images[0]}
+          alt={product.name}
+          fill
+          className="object-cover transition-all duration-500 ease-in-out transform group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+        />
+
+        {/* Sale Badge */}
+        {product.badge && (
+            <div className="absolute bottom-3 left-3 bg-secondary text-white text-xs font-semibold px-2 py-1 rounded">
+            {product.badge}
+            </div>
+        )}
+
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
+      </div>
+
+      {/* Product Info */}
+      <div className="p-4 space-y-3">
+        <h3 className="text-sm font-medium text-foreground line-clamp-2 leading-tight">{product.name}</h3>
+
+        {/* Price */}
+        <div className="flex items-center gap-2">
+          <span className="text-lg font-bold text-foreground">Rs. {product.salePrice.toFixed(2)}</span>
+          {product.originalPrice > product.salePrice && (
+            <span className="text-sm text-primary line-through">Rs. {product.originalPrice.toFixed(2)}</span>
+          )}
         </div>
-        <h4 className="font-medium text-sm mb-2">{title}</h4>
-        <p className="text-lg font-semibold mb-4">{price}</p>
-        <Button variant="outline" className="w-full">
-          СМОТРЕТЬ БОЛЬШЕ
-        </Button>
-      </CardContent>
-    </Card>
+
+        {/* Add to Bag Button */}
+        <button className="w-full px-4 py-2 text-sm font-medium text-background bg-foreground border border-secondary rounded-md hover:bg-popover hover:font-bold hover:text-foreground hover:border-foreground transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary">
+          Add to Cart
+        </button>
+      </div>
+    </div>
   )
 }
-
-export default ProductCard;
