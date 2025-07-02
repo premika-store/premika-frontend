@@ -1,4 +1,4 @@
-import ProductCard from "@/app/(routes)/products/components/product-card";
+import ProductCard from "@/components/product-card";
 
 // Sample product data - replace with your actual data source
 const products = [

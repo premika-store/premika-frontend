@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ProductCard from "../app/(routes)/products/components/product-card";
+import ProductCard from "./product-card";
 
 const products = [
   {
