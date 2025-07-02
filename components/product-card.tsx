@@ -1,85 +1,68 @@
 "use client"
 
-import { ShoppingCart } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
-
+import { useState } from "react"
 interface Product {
-  id: number
+  id: string
   name: string
-  price: number
-  image: string
-  description: string
+  originalPrice: number
+  salePrice: number
+  images: string[]
+  badge?: string
 }
 
 interface ProductCardProps {
   product: Product
-  position: "left" | "center" | "right"
-  isAnimating: boolean
 }
 
-export default function ProductCard({ product, position, isAnimating }: ProductCardProps) {
-  const getTransformClass = () => {
-    switch (position) {
-      case "left":
-        return "translate-x-[-300px] scale-75 opacity-60"
-      case "center":
-        return "translate-x-0 scale-100 opacity-100"
-      case "right":
-        return "translate-x-[300px] scale-75 opacity-60"
-      default:
-        return "translate-x-0 scale-100 opacity-100"
-    }
-  }
+export default function ProductCard({ product }: ProductCardProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   return (
-    <div
-      className={`absolute transition-all duration-700 ease-out ${getTransformClass()} ${
-        position === "center" ? "z-20" : "z-10"
-      }`}
-      style={{
-        transitionProperty: "transform, opacity",
-      }}
-    >
-      <Card
-        className={`w-96 h-[420px] cursor-pointer transition-all duration-300 ${
-          position === "center" ? "shadow-2xl ring-2 ring-blue-500/20" : "shadow-lg hover:shadow-xl"
-        }`}
+    <div className="group relative bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+      {/* Product Image Container */}
+      <div
+        className="relative aspect-[3/4] overflow-hidden bg-gray-100"
+        onMouseEnter={() => setCurrentImageIndex(1)}
+        onMouseLeave={() => setCurrentImageIndex(0)}
       >
-        <CardContent className="p-6 h-full flex flex-col">
-          <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
-            <Image
-              src={product.image || "/placeholder.svg"}
-              alt={product.name}
-              fill
-              className="object-cover transition-transform duration-300 hover:scale-105"
-            />
-          </div>
-          <div className="flex-1 flex flex-col justify-between">
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name}</h3>
-              <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
+        {/* Main Product Image */}
+        <Image
+          src={product.images[currentImageIndex] || product.images[0]}
+          alt={product.name}
+          fill
+          className="object-cover transition-all duration-500 ease-in-out transform group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+        />
+
+        {/* Sale Badge */}
+        {product.badge && (
+            <div className="absolute bottom-3 left-3 bg-secondary text-white text-xs font-semibold px-2 py-1 rounded">
+            {product.badge}
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-blue-600">${product.price}</span>
-              <Button
-                size="sm"
-                className={`${
-                  position === "center" ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-600 hover:bg-gray-700"
-                }`}
-                onClick={() => {
-                  // Handle add to cart functionality
-                  console.log(`Added ${product.name} to cart`)
-                }}
-              >
-                <ShoppingCart className="w-4 h-4 mr-1" />
-                Add to Cart
-              </Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+        )}
+
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
+      </div>
+
+      {/* Product Info */}
+      <div className="p-4 space-y-3">
+        <h3 className="text-sm font-medium text-foreground line-clamp-2 leading-tight">{product.name}</h3>
+
+        {/* Price */}
+        <div className="flex items-center gap-2">
+          <span className="text-lg font-bold text-foreground">Rs. {product.salePrice.toFixed(2)}</span>
+          {product.originalPrice > product.salePrice && (
+            <span className="text-sm text-primary line-through">Rs. {product.originalPrice.toFixed(2)}</span>
+          )}
+        </div>
+
+        {/* Add to Bag Button */}
+        <button className="w-full px-4 py-2 text-sm font-medium text-background bg-foreground border border-secondary rounded-md hover:bg-popover hover:font-bold hover:text-foreground hover:border-foreground transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary">
+          Add to Cart
+        </button>
+      </div>
     </div>
   )
 }
