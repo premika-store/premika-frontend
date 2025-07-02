@@ -14,7 +14,6 @@ export default function HomePage() {
       <ProductGrid />
       <FeatureSection />
       <NewsletterSection />
-      <Footer />
     </div>
   )
 }
