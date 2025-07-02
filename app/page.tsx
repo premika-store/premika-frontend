@@ -7,7 +7,7 @@ import { NewsletterSection } from "@/components/newsletter-section";
 import { Footer } from "@/components/footer";
 import Carousel from "@/components/product-carousel";
 import NavbarDemo from "@/components/resize-navbar";
-import ProductsPage from "@/components/all-products";
+// import ProductsPage from "./(routes)/products/page";
 
 export default function HomePage() {
   return (
@@ -19,7 +19,7 @@ export default function HomePage() {
       {/* <ProductGrid /> */}
       {/* <FeatureSection /> */}
       <NewsletterSection />
-      <ProductsPage /> {/* All Products Page */}
+      {/* <ProductsPage /> All Products Page */}
       <Footer />
     </div>
   );

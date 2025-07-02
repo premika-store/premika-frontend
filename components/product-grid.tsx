@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import ProductCard from "./product-card"
+import { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ProductCard from "../app/(routes)/products/components/product-card";
 
 const products = [
   {
@@ -31,41 +31,41 @@ const products = [
     price: "1 800 ₽",
     image: "/placeholder.svg?height=600&width=400",
   },
-]
+];
 
 export default function ProductGrid() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const visibleCount = 3
-  const slideWidth = 300 // Adjust depending on ProductCard size
-  const gap = 24
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const visibleCount = 3;
+  const slideWidth = 300; // Adjust depending on ProductCard size
+  const gap = 24;
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isAutoPlaying) return
+    if (!isAutoPlaying) return;
     const interval = setInterval(() => {
-      nextSlide()
-    }, 3500)
-    return () => clearInterval(interval)
-  }, [isAutoPlaying])
+      nextSlide();
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length)
-  }
+    setCurrentIndex((prev) => (prev + 1) % products.length);
+  };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length)
-  }
+    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+  };
 
-  const handleMouseEnter = () => setIsAutoPlaying(false)
-  const handleMouseLeave = () => setIsAutoPlaying(true)
+  const handleMouseEnter = () => setIsAutoPlaying(false);
+  const handleMouseLeave = () => setIsAutoPlaying(true);
 
   const getTranslateX = () => {
     // Center the current card
-    const centerOffset = ((slideWidth + gap) * (currentIndex - 1))
-    return `translateX(-${centerOffset}px)`
-  }
+    const centerOffset = (slideWidth + gap) * (currentIndex - 1);
+    return `translateX(-${centerOffset}px)`;
+  };
 
   return (
     <section className="py-16 bg-gray-50">
@@ -88,14 +88,14 @@ export default function ProductGrid() {
             }}
           >
             {products.map((product, index) => {
-              let scale = "scale-90"
-              let zIndex = "z-10"
-              let opacity = "opacity-80"
+              let scale = "scale-90";
+              let zIndex = "z-10";
+              let opacity = "opacity-80";
 
               if (index === currentIndex) {
-                scale = "scale-110"
-                zIndex = "z-20"
-                opacity = "opacity-100"
+                scale = "scale-110";
+                zIndex = "z-20";
+                opacity = "opacity-100";
               }
 
               return (
@@ -110,7 +110,7 @@ export default function ProductGrid() {
                     image={product.image}
                   />
                 </div>
-              )
+              );
             })}
           </div>
 
@@ -152,5 +152,5 @@ export default function ProductGrid() {
         </div>
       </div>
     </section>
-  )
+  );
 }
