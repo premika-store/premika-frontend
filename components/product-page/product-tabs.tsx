@@ -1,0 +1,41 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+interface ProductTabsProps {
+  description: string
+  reviewCount: number
+}
+
+export function ProductTabs({ description, reviewCount }: ProductTabsProps) {
+  return (
+    <div className="w-full">
+      <Tabs defaultValue="description" className="w-full">
+        <TabsList className="grid w-full grid-cols-2 max-w-md">
+          <TabsTrigger value="description">Description</TabsTrigger>
+          <TabsTrigger value="reviews">Reviews ({reviewCount})</TabsTrigger>
+        </TabsList>
+        <TabsContent value="description" className="mt-8">
+          <div className="prose prose-gray max-w-none">
+            <p className="text-gray-600 leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentula augue nec est vestibulum auctor.
+              Donec risus est, rutrum vitae cursus rutrum, auctor sit imperdiet. Pellentesque facilisis mi mollis
+              finibus pellentesque cursus at, suscipit et ninim.
+            </p>
+            <p className="text-gray-600 leading-relaxed mt-4">
+              Pellentesque aliquam, sem eget laoreet ultrices, ipsum mauris feugiat ipsum, quis fermentum tortor ante
+              eget velit. Donec ac tempor ante. Fusce ultricies massa mauris. Fusce aliquam, mauris eget sagittis
+              ultrices, ipsum mauris aliquam ex, sed elementor mauris ipsum nec est, et magna risus mauris lorem ipsum
+              dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, mauris eros egestas
+              risus, ut accumsan nibh dolor quis, ac sodales. Cras risque mauris ex, consequat vel dignissim et, lacinia
+              ut urna. Donec gravida fermentum tellus. Ut non mauris lorem. Aenean tempor mauris diam.
+            </p>
+          </div>
+        </TabsContent>
+        <TabsContent value="reviews" className="mt-8">
+          <div className="text-gray-600">
+            <p>No reviews yet. Be the first to review this product!</p>
+          </div>
+        </TabsContent>
+      </Tabs>
+    </div>
+  )
+}

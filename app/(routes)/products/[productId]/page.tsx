@@ -6,14 +6,19 @@ import { ProductInfo } from "@/components/product-info"
 import { ProductTabs } from "@/components/product-tabs"
 import { RelatedProducts } from "@/components/related-products"
 import { Breadcrumb } from "@/components/breadcrumb"
+import asha from "@/public/products/asha.png"
+import babita from "@/public/products/babita.png"
+import ekta from "@/public/products/ekta.png"
+import jaya from "@/public/products/jaya.png"
+
 
 export default function SingleProductPage() {
   // Sample product data
   const productImages = [
-    "/placeholder.svg?height=600&width=600&text=Nike+Shoe+1",
-    "/placeholder.svg?height=600&width=600&text=Nike+Shoe+2",
-    "/placeholder.svg?height=600&width=600&text=Nike+Shoe+3",
-    "/placeholder.svg?height=600&width=600&text=Nike+Shoe+4",
+    asha,
+    babita,
+    ekta,
+    jaya,
   ]
 
   const productData = {
