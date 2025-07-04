@@ -131,15 +131,31 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Horizontal line and copyright */}
-      <div className="border-t border-background mx-4 sm:mx-6 lg:mx-8">
+      <div className="border-t border-[#E0BCA2] mx-4 sm:mx-6 lg:mx-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <p className="text-center text-m text-[#E0BCA2]">
             © 2025 Premika. All rights reserved.
           </p>
-          <p className="text-center text-xs text-[#E0BCA2]">
-            Made with ❤️ by Khushi Somani and Parth Dahiya
-          </p>
+            <p className="text-center text-xs text-[#E0BCA2]">
+            Made with ❤️ by{" "}
+            <a
+              href="https://www.linkedin.com/in/somani-khushi/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-white"
+            >
+              Khushi Somani
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://www.linkedin.com/in/parth-dahiya/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-white"
+            >
+              Parth Dahiya
+            </a>
+            </p>
         </div>
       </div>
     </footer>
