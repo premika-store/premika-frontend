@@ -9,18 +9,18 @@ export function ProductTabs({ description, reviewCount }: ProductTabsProps) {
   return (
     <div className="w-full">
       <Tabs defaultValue="description" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 max-w-md">
-          <TabsTrigger value="description">Description</TabsTrigger>
-          <TabsTrigger value="reviews">Reviews ({reviewCount})</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2 max-w-md bg-foreground">
+          <TabsTrigger value="description" className="text-background">Description</TabsTrigger>
+          <TabsTrigger value="reviews" className="text-background">Reviews ({reviewCount})</TabsTrigger>
         </TabsList>
         <TabsContent value="description" className="mt-8">
           <div className="prose prose-gray max-w-none">
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-foreground leading-relaxed text-justify">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentula augue nec est vestibulum auctor.
               Donec risus est, rutrum vitae cursus rutrum, auctor sit imperdiet. Pellentesque facilisis mi mollis
               finibus pellentesque cursus at, suscipit et ninim.
             </p>
-            <p className="text-gray-600 leading-relaxed mt-4">
+            <p className="text-foreground leading-relaxed mt-4 text-justify">
               Pellentesque aliquam, sem eget laoreet ultrices, ipsum mauris feugiat ipsum, quis fermentum tortor ante
               eget velit. Donec ac tempor ante. Fusce ultricies massa mauris. Fusce aliquam, mauris eget sagittis
               ultrices, ipsum mauris aliquam ex, sed elementor mauris ipsum nec est, et magna risus mauris lorem ipsum
@@ -31,7 +31,7 @@ export function ProductTabs({ description, reviewCount }: ProductTabsProps) {
           </div>
         </TabsContent>
         <TabsContent value="reviews" className="mt-8">
-          <div className="text-gray-600">
+          <div className="text-foreground">
             <p>No reviews yet. Be the first to review this product!</p>
           </div>
         </TabsContent>

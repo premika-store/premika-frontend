@@ -136,7 +136,7 @@ export function Footer() {
           <p className="text-center text-m text-[#E0BCA2]">
             © 2025 Premika. All rights reserved.
           </p>
-            <p className="text-center text-xs text-[#E0BCA2]">
+          <p className="text-center text-xs text-[#E0BCA2]">
             Made with ❤️ by{" "}
             <a
               href="https://www.linkedin.com/in/somani-khushi/"
@@ -155,7 +155,7 @@ export function Footer() {
             >
               Parth Dahiya
             </a>
-            </p>
+          </p>
         </div>
       </div>
     </footer>

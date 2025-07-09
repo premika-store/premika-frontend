@@ -1,71 +1,100 @@
-import Image from "next/image"
-import { Star } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
 
 interface Product {
-  id: number
-  name: string
-  category: string
-  price: number
-  originalPrice?: number
-  rating: number
-  image: string
-  onSale?: boolean
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  originalPrice?: number;
+  rating: number;
+  image: string;
+  images: string[]; // Made required for hover functionality
+  onSale?: boolean;
 }
 
 interface RelatedProductsProps {
-  products: Product[]
+  products: Product[];
 }
 
 export function RelatedProducts({ products }: RelatedProductsProps) {
+  const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
+
   return (
     <div className="w-full">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-gray-900">Related products</h2>
-        <div className="mt-4 w-24 h-1 bg-red-600 mx-auto"></div>
+        <h2 className="text-3xl font-bold text-secondary">Related products</h2>
+        <div className="mt-4 w-24 h-1 bg-foreground mx-auto"></div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-lg shadow-sm overflow-hidden group hover:shadow-md transition-shadow"
+            className="group relative bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+            onMouseEnter={() => setHoveredProductId(product.id)}
+            onMouseLeave={() => setHoveredProductId(null)}
           >
-            <div className="relative">
-              {product.onSale && <Badge className="absolute top-2 left-2 bg-red-600 z-10">SALE</Badge>}
-              <div className="aspect-square bg-gray-100">
-                <Image
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
-                  width={250}
-                  height={250}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+            {/* Product Image Container */}
+            <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+              {/* Main Product Image */}
+              <Image
+                src={
+                  hoveredProductId === product.id &&
+                  product.images &&
+                  product.images.length > 1
+                    ? product.images[1] || "/placeholder.svg"
+                    : product.image || "/placeholder.svg"
+                }
+                alt={product.name}
+                fill
+                className="object-cover transition-all duration-500 ease-in-out transform group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              />
+
+              {/* Sale Badge */}
+              {product.onSale && (
+                <div className="absolute bottom-3 left-3 bg-secondary text-white text-xs font-semibold px-2 py-1 rounded">
+                  SALE
+                </div>
+              )}
+
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
             </div>
-            <div className="p-4">
-              <div className="text-xs text-gray-500 mb-1">{product.category}</div>
-              <div className="flex text-yellow-400 mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-3 h-3 ${i < product.rating ? "fill-current" : "stroke-current fill-transparent"}`}
-                  />
-                ))}
+
+            {/* Product Info */}
+            <div className="p-4 space-y-3">
+              <div className="text-xs text-primary mb-1">
+                {product.category}
               </div>
-              <h3 className="font-medium text-gray-900 mb-2 hover:text-red-600 cursor-pointer transition-colors">
+              <h3 className="text-sm font-medium text-foreground line-clamp-2 leading-tight">
                 {product.name}
               </h3>
-              <div className="flex items-center space-x-2">
-                <span className="text-red-600 font-bold">${product.price.toFixed(2)}</span>
-                {product.originalPrice && (
-                  <span className="text-gray-400 line-through text-sm">${product.originalPrice.toFixed(2)}</span>
-                )}
+
+              {/* Price */}
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-bold text-foreground">
+                  Rs. {product.price.toFixed(2)}
+                </span>
+                {product.originalPrice &&
+                  product.originalPrice > product.price && (
+                    <span className="text-sm text-primary line-through">
+                      Rs. {product.originalPrice.toFixed(2)}
+                    </span>
+                  )}
               </div>
+
+              {/* Add to Cart Button */}
+              <button className="w-full px-4 py-2 text-sm font-medium text-background bg-foreground border border-secondary rounded-md hover:bg-popover hover:font-bold hover:text-foreground hover:border-foreground transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary">
+                Add to Cart
+              </button>
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 }

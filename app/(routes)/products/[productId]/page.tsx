@@ -10,6 +10,7 @@ import asha from "@/public/products/asha.png"
 import babita from "@/public/products/babita.png"
 import ekta from "@/public/products/ekta.png"
 import jaya from "@/public/products/jaya.png"
+// import meera from "@/public/products/meera.JPG"
 
 
 export default function SingleProductPage() {
@@ -19,10 +20,11 @@ export default function SingleProductPage() {
     babita,
     ekta,
     jaya,
+    // meera,
   ]
 
   const productData = {
-    title: "Ipsum Imperdie Omittam Incididunt",
+    title: "Ashaa",
     price: 100.0,
     rating: 5,
     reviewCount: 1,
@@ -40,8 +42,10 @@ export default function SingleProductPage() {
       price: 40.0,
       originalPrice: 45.0,
       rating: 5,
-      image: "/placeholder.svg?height=250&width=250&text=Product+1",
+      image: asha,
       onSale: true,
+      imageHeight: 250,
+      imageWidth: 250,
     },
     {
       id: 2,
@@ -49,7 +53,9 @@ export default function SingleProductPage() {
       category: "Clothing, Laptops & Desktops",
       price: 80.0,
       rating: 5,
-      image: "/placeholder.svg?height=250&width=250&text=Product+2",
+      image: babita,
+      imageHeight: 250,
+      imageWidth: 250,
     },
     {
       id: 3,
@@ -57,7 +63,9 @@ export default function SingleProductPage() {
       category: "Clothing, Handbag & Scarfs",
       price: 55.0,
       rating: 5,
-      image: "/placeholder.svg?height=250&width=250&text=Product+3",
+      image: ekta,
+      imageHeight: 250,
+      imageWidth: 250,
     },
     {
       id: 4,
@@ -65,7 +73,9 @@ export default function SingleProductPage() {
       category: "Clothing, Laptops & Desktops",
       price: 100.0,
       rating: 5,
-      image: "/placeholder.svg?height=250&width=250&text=Product+4",
+      image: jaya,
+      imageHeight: 250,
+      imageWidth: 250,
     },
   ]
 
@@ -78,7 +88,7 @@ export default function SingleProductPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

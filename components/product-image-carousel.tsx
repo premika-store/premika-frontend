@@ -1,49 +1,57 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ProductImageCarouselProps {
-  images: string[]
-  alt: string
+  images: string[];
+  alt: string;
 }
 
-export function ProductImageCarousel({ images, alt }: ProductImageCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+export function ProductImageCarousel({
+  images,
+  alt,
+}: ProductImageCarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-play functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-    }, 4000) // Change image every 4 seconds
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 4000); // Change image every 4 seconds
 
-    return () => clearInterval(interval)
-  }, [images.length])
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
-  }
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
 
   const goToSlide = (index: number) => {
-    setCurrentIndex(index)
-  }
+    setCurrentIndex(index);
+  };
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col md:flex-row md:space-x-4 items-center justify-center">
       {/* Main Image */}
-      <div className="relative aspect-square bg-white rounded-lg overflow-hidden group">
+      <div
+        className="relative bg-white w-92 h-92 rounded-lg overflow-hidden group flex items-center justify-center"
+        style={{ aspectRatio: "3/4" }}
+      >
         <Image
           src={images[currentIndex] || "/placeholder.svg"}
           alt={alt}
-          width={600}
+          width={400}
           height={600}
-          className="w-full h-full object-contain transition-opacity duration-300"
+          className="w-full h-full object-cover transition-opacity duration-300"
         />
 
         {/* Navigation Arrows */}
@@ -80,12 +88,14 @@ export function ProductImageCarousel({ images, alt }: ProductImageCarouselProps)
       </div>
 
       {/* Thumbnail Navigation */}
-      <div className="flex space-x-2 justify-center">
+      <div className="flex flex-row md:flex-col space-x-2 md:space-x-0 md:space-y-2 items-center justify-center mt-4 md:mt-0 overflow-x-auto md:overflow-x-visible">
         {images.map((image, index) => (
           <button
             key={index}
-            className={`w-16 h-16 rounded border-2 overflow-hidden transition-all ${
-              index === currentIndex ? "border-gray-800 ring-2 ring-gray-300" : "border-gray-200 hover:border-gray-400"
+            className={`flex-shrink-0 w-24 h-26 md:w-28 md:h-32 rounded border-2 overflow-hidden transition-all ${
+              index === currentIndex
+                ? "border-foreground ring-2 ring-primary"
+                : "border-tertiary hover:border-foreground"
             }`}
             onClick={() => goToSlide(index)}
           >
@@ -100,5 +110,5 @@ export function ProductImageCarousel({ images, alt }: ProductImageCarouselProps)
         ))}
       </div>
     </div>
-  )
+  );
 }
